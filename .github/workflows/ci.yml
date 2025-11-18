@@ -12,17 +12,34 @@ jobs:
     steps:
       - uses: actions/checkout@v3
         with:
-          submodules: recursive  # ← AJOUTE CETTE LIGNE
+          submodules: recursive
+
+      # --- NOUVELLE ÉTAPE : Appel de votre API avant la génération ---
+      - name: Récupérer des données via mon API
+        env:
+          API_KEY: ${{ secrets.API }}
+        run: |
+          # Exemple : Récupérer des données et les sauvegarder dans un fichier
+          curl -X GET "https://votre-api.example.com/data" \
+               -H "Authorization: Bearer $API_KEY" \
+               -o api_data.json
+
+          # Afficher le contenu (optionnel)
+          cat api_data.json
+
       - uses: actions/setup-python@v4
         with:
           python-version: 3.x
+
       - run: echo "cache_id=$(date --utc '+%V')" >> $GITHUB_ENV
+
       - uses: actions/cache@v3
         with:
           key: mkdocs-material-${{ env.cache_id }}
           path: .cache
           restore-keys: |
             mkdocs-material-
+
       - run: pip install mkdocs-material
       - run: pip install mkdocs-roamlinks-plugin
       - run: pip install mkdocs-git-revision-date-localized-plugin
@@ -31,4 +48,5 @@ jobs:
       - run: pip install mkdocs-mermaid2-plugin
       - run: pip install mkdocs-exclude
       - run: pip install mkdocs-obsidian-bridge
+
       - run: mkdocs gh-deploy --force
