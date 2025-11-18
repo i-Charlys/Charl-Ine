@@ -63,3 +63,4 @@ Il est donc préférable dans Obsidian d'attribuer aux dossiers et fichiers des 
 - <https://github.com/TuanManhCao/digital-garden>
 - <https://forum.obsidian.md/t/my-obsidian-mkdocs-workflow/24424> | <https://tarekshehata.github.io/alkashi/>
  
+# Test deployment
