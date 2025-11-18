@@ -1,0 +1,3 @@
+[submodule "docs"]
+	path = docs
+	url = https://github.com/i-Charlys/Charl-Ine-Dev.git
