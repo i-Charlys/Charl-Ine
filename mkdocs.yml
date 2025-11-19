@@ -100,12 +100,12 @@ markdown_extensions:
 
 plugins:
   - search
-  - roamlinks 
-  - mermaid2
-  - callouts
-  - git-revision-date-localized
-  - obsidian-bridge:  # PLUGIN GRAPH
-      graph: true
+#   - roamlinks 
+#   - mermaid2
+#   - callouts
+#   - git-revision-date-localized
+#   - obsidian-bridge:  # PLUGIN GRAPH
+#       graph: true
 
 #  NAVIGATION AVEC PAGE GRAPH
 nav:
