@@ -29,8 +29,9 @@ docs_dir: docs
 theme:
     name: 'material'
     # custom_dir: overrides #  
-    font: false  # RGPD ; pas de fonte Google
-    language: fr # français
+    font:
+      text: Inter
+      code: JetBrains Mono
     # logo: images/gem.svg
     favicon: images/obsidian-logo.png
     icon:
@@ -39,7 +40,11 @@ theme:
 
     palette: 
       - scheme: default
-        accent: cyan
+        primary: indigo
+        accent: purple
+        toggle:
+          icon: material/weather-sunny
+          name: Basculer en mode sombre
         toggle:
           icon: material/weather-sunny
           name: Basculer en mode sombre
@@ -100,12 +105,12 @@ markdown_extensions:
 
 plugins:
   - search
-#   - roamlinks 
-#   - mermaid2
-#   - callouts
-#   - git-revision-date-localized
-#   - obsidian-bridge:  # PLUGIN GRAPH
-#       graph: true
+  - roamlinks 
+  - mermaid2
+  - callouts
+  - git-revision-date-localized
+  - obsidian-bridge:  # PLUGIN GRAPH
+      graph: true
 
 #  NAVIGATION AVEC PAGE GRAPH
 nav:
@@ -130,6 +135,7 @@ extra:
 
 extra_javascript:
   - javascripts/mathjax.js
+  - javascripts/animations.js
   - https://polyfill.io/v3/polyfill.min.js?features=es6
   - https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js
   - https://unpkg.com/mermaid/dist/mermaid.min.js
