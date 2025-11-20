@@ -1,0 +1,195 @@
+:root {
+  /* --- LIGHT MODE (Default) --- */
+  --bg-body: #f8fafc;
+  --bg-card: #ffffff;
+  --bg-sidebar: rgba(255, 255, 255, 0.8);
+  --text-main: #0f172a;
+  --text-muted: #64748b;
+  --border-subtle: rgba(0, 0, 0, 0.08);
+  --accent-primary: #7c3aed;
+  /* Violet */
+  --accent-bg: rgba(124, 58, 237, 0.1);
+  --glow-primary: 0 4px 20px rgba(124, 58, 237, 0.15);
+  --header-bg: rgba(255, 255, 255, 0.85);
+}
+
+[data-md-color-scheme="slate"] {
+  /* --- DARK MODE (StableApp) --- */
+  --bg-body: #050505;
+  --bg-card: #0f0f0f;
+  --bg-sidebar: rgba(5, 5, 5, 0.8);
+  --text-main: #ffffff;
+  --text-muted: #9ca3af;
+  --border-subtle: rgba(255, 255, 255, 0.08);
+  --accent-primary: #8b5cf6;
+  --accent-bg: rgba(139, 92, 246, 0.15);
+  --glow-primary: 0 0 20px rgba(139, 92, 246, 0.15);
+  --header-bg: rgba(5, 5, 5, 0.8);
+}
+
+/* --- BASE --- */
+body {
+  background-color: var(--bg-body);
+  /* Subtle gradient overlay for both modes */
+  background-image:
+    radial-gradient(circle at 15% 50%, var(--accent-bg), transparent 25%),
+    radial-gradient(circle at 85% 30%, var(--accent-bg), transparent 25%);
+  font-family: 'Inter', sans-serif;
+  color: var(--text-main);
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* --- HEADER --- */
+.md-header {
+  background: var(--header-bg) !important;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border-subtle);
+  color: var(--text-main) !important;
+}
+
+.md-header__title {
+  color: var(--text-main) !important;
+  font-weight: 700;
+}
+
+/* --- NAVBAR --- */
+.md-tabs {
+  background: transparent !important;
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.md-tabs__link {
+  color: var(--text-muted) !important;
+  transition: all 0.2s;
+}
+
+.md-tabs__link:hover {
+  color: var(--text-main) !important;
+}
+
+.md-tabs__link--active {
+  color: var(--accent-primary) !important;
+  font-weight: 700;
+  background: var(--accent-bg);
+  border-radius: 6px;
+}
+
+/* --- SIDEBAR (IMPROVED SEPARATION) --- */
+.md-sidebar {
+  width: 16rem;
+}
+
+.md-sidebar__scrollwrap {
+  background: transparent;
+}
+
+/* Category Headers (The "Categories") */
+.md-nav__title {
+  color: var(--text-main) !important;
+  font-weight: 800;
+  text-transform: uppercase;
+  font-size: 0.75rem;
+  letter-spacing: 0.05em;
+  opacity: 0.8;
+  margin-top: 1.5rem;
+  margin-bottom: 0.5rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid var(--border-subtle);
+  /* Separator line */
+}
+
+/* Navigation Links (The "Summary") */
+.md-nav__item {
+  padding: 2px 0;
+}
+
+.md-nav__link {
+  color: var(--text-muted) !important;
+  transition: all 0.2s ease;
+  border-radius: 6px;
+  padding: 6px 12px;
+}
+
+.md-nav__link:hover {
+  color: var(--text-main) !important;
+  background: var(--border-subtle);
+}
+
+.md-nav__link--active {
+  color: var(--text-main) !important;
+  background: var(--accent-bg);
+  border-left: 3px solid var(--accent-primary);
+  font-weight: 600;
+  box-shadow: var(--glow-primary);
+}
+
+/* Nested Items spacing */
+.md-nav__item--nested>.md-nav__list {
+  margin-left: 0.5rem;
+  padding-left: 0.5rem;
+  border-left: 1px solid var(--border-subtle);
+}
+
+/* --- CONTENT CARD --- */
+.md-content__inner {
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: 16px;
+  padding: 3rem;
+  margin-top: 2rem;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+/* --- TYPOGRAPHY --- */
+h1 {
+  font-size: 2.5rem !important;
+  font-weight: 800 !important;
+  letter-spacing: -0.03em;
+  margin-bottom: 1.5rem;
+  background: linear-gradient(135deg, var(--accent-primary) 0%, var(--accent-secondary, #3b82f6) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+h2 {
+  font-size: 1.75rem !important;
+  font-weight: 700;
+  color: var(--text-main);
+  margin-top: 3rem;
+  margin-bottom: 1rem;
+  display: flex;
+  align-items: center;
+}
+
+h2::before {
+  content: '';
+  display: inline-block;
+  width: 6px;
+  height: 24px;
+  background: var(--accent-primary);
+  margin-right: 12px;
+  border-radius: 4px;
+}
+
+p {
+  color: var(--text-muted);
+  line-height: 1.8;
+  margin-bottom: 1.5rem;
+  font-size: 1.05rem;
+}
+
+/* --- CODE BLOCKS --- */
+pre {
+  background: var(--bg-body) !important;
+  border: 1px solid var(--border-subtle);
+  border-radius: 8px;
+}
+
+code {
+  background: var(--border-subtle);
+  color: var(--text-main);
+  padding: 2px 6px;
+  border-radius: 4px;
+}
