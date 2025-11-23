@@ -109,7 +109,8 @@ plugins:
   - mermaid2
   - callouts
   - git-revision-date-localized
-  - obsidian-bridge:  # PLUGIN GRAPH
+  - autolinks
+  - obsidian-bridge:
       graph: true
 
 #  NAVIGATION AVEC PAGE GRAPH
