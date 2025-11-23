@@ -118,7 +118,7 @@ nav:
   - Graph: graph.md
   - Tech:
       - Tech: Tech/index.md
-      - "L'intérêt d'un DNS chiffré": Tech/L'intérêt d'un DNS chiffre.md
+      - "L'intérêt d'un DNS chiffré": "Tech/L'intérêt d'un DNS chiffre.md"
       - "La Science Cachée de la Netteté en Jeu": Tech/nettete-en-jeu.md
 
 copyright: >
