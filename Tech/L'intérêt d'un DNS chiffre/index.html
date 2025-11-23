@@ -1,0 +1,475 @@
+
+<!DOCTYPE html>
+
+<html class="no-js" lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width,initial-scale=1" name="viewport"/>
+<meta content="Site web Charl_Ine, un site second cerveau sur la tech, l'economie et la science." name="description"/>
+<meta content="i-charlys et kumo-h" name="author"/>
+<link href="https://i-charlys.github.io/Charl-Ine/Tech/L%27int%C3%A9r%C3%AAt%20d%27un%20DNS%20chiffre/" rel="canonical"/>
+<link href="../../images/obsidian-logo.png" rel="icon"/>
+<meta content="mkdocs-1.6.1, mkdocs-material-9.7.0" name="generator"/>
+<title>L'intérêt d'un DNS chiffre - Charl_Ine</title>
+<link href="../../assets/stylesheets/main.618322db.min.css" rel="stylesheet"/>
+<link href="../../assets/stylesheets/palette.ab4e12ef.min.css" rel="stylesheet"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css?family=Inter:300,300i,400,400i,700,700i%7CJetBrains+Mono:400,400i,700,700i&amp;display=fallback" rel="stylesheet"/>
+<style>:root{--md-text-font:"Inter";--md-code-font:"JetBrains Mono"}</style>
+<link href="../../stylesheets/extra.css" rel="stylesheet"/>
+<script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+</head>
+<body data-md-color-accent="purple" data-md-color-primary="indigo" data-md-color-scheme="default" dir="ltr">
+<input autocomplete="off" class="md-toggle" data-md-toggle="drawer" id="__drawer" type="checkbox"/>
+<input autocomplete="off" class="md-toggle" data-md-toggle="search" id="__search" type="checkbox"/>
+<label class="md-overlay" for="__drawer"></label>
+<div data-md-component="skip">
+<a class="md-skip" href="#introduction-rejoindre-le-club-des-015">
+          Skip to content
+        </a>
+</div>
+<div data-md-component="announce">
+</div>
+<header class="md-header" data-md-component="header">
+<nav aria-label="Header" class="md-header__inner md-grid">
+<a aria-label="Charl_Ine" class="md-header__button md-logo" data-md-component="logo" href="../.." title="Charl_Ine">
+<svg viewbox="0 0 512 512" xmlns="http://www.w3.org/2000/svg"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M116.7 33.8c4.5-6.1 11.7-9.8 19.3-9.8h240c7.6 0 14.8 3.6 19.3 9.8l112 152c6.8 9.2 6.1 21.9-1.5 30.4l-232 256c-4.5 5-11 7.9-17.8 7.9s-13.2-2.9-17.8-7.9l-232-256c-7.7-8.5-8.3-21.2-1.5-30.4zm38.5 39.8c-3.3 2.5-4.2 7-2.1 10.5l57.4 95.7L63.3 192c-4.1.3-7.3 3.8-7.3 8s3.2 7.6 7.3 8l192 16h1.3l192-16c4.1-.3 7.3-3.8 7.3-8s-3.2-7.6-7.3-8l-147.2-12.3 57.4-95.6c2.1-3.5 1.2-8.1-2.1-10.5s-7.9-2-10.7 1l-90 97.6-90.1-97.6c-2.8-3-7.4-3.4-10.7-1"></path></svg>
+</a>
+<label class="md-header__button md-icon" for="__drawer">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"></path></svg>
+</label>
+<div class="md-header__title" data-md-component="header-title">
+<div class="md-header__ellipsis">
+<div class="md-header__topic">
+<span class="md-ellipsis">
+            Charl_Ine
+          </span>
+</div>
+<div class="md-header__topic" data-md-component="header-topic">
+<span class="md-ellipsis">
+            
+              L'intérêt d'un DNS chiffre
+            
+          </span>
+</div>
+</div>
+</div>
+<form class="md-header__option" data-md-component="palette">
+<input aria-label="Basculer en mode sombre" class="md-option" data-md-color-accent="purple" data-md-color-media="" data-md-color-primary="indigo" data-md-color-scheme="default" id="__palette_0" name="__palette" type="radio"/>
+<label class="md-header__button md-icon" for="__palette_1" hidden="" title="Basculer en mode sombre">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44z"></path></svg>
+</label>
+<input aria-label="Basculer en mode clair" class="md-option" data-md-color-accent="cyan" data-md-color-media="" data-md-color-primary="indigo" data-md-color-scheme="slate" id="__palette_1" name="__palette" type="radio"/>
+<label class="md-header__button md-icon" for="__palette_0" hidden="" title="Basculer en mode clair">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31"></path></svg>
+</label>
+</form>
+<script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+<label class="md-header__button md-icon" for="__search">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"></path></svg>
+</label>
+<div class="md-search" data-md-component="search" role="dialog">
+<label class="md-search__overlay" for="__search"></label>
+<div class="md-search__inner" role="search">
+<form class="md-search__form" name="search">
+<input aria-label="Search" autocapitalize="off" autocomplete="off" autocorrect="off" class="md-search__input" data-md-component="search-query" name="query" placeholder="Search" required="" spellcheck="false" type="text"/>
+<label class="md-search__icon md-icon" for="__search">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"></path></svg>
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"></path></svg>
+</label>
+<nav aria-label="Search" class="md-search__options">
+<a aria-label="Share" class="md-search__icon md-icon" data-clipboard="" data-clipboard-text="" data-md-component="search-share" href="javascript:void(0)" tabindex="-1" title="Share">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91s2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08"></path></svg>
+</a>
+<button aria-label="Clear" class="md-search__icon md-icon" tabindex="-1" title="Clear" type="reset">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"></path></svg>
+</button>
+</nav>
+<div class="md-search__suggest" data-md-component="search-suggest"></div>
+</form>
+<div class="md-search__output">
+<div class="md-search__scrollwrap" data-md-scrollfix="" tabindex="0">
+<div class="md-search-result" data-md-component="search-result">
+<div class="md-search-result__meta">
+            Initializing search
+          </div>
+<ol class="md-search-result__list" role="presentation"></ol>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="md-header__source">
+<a class="md-source" data-md-component="source" href="https://github.com/i-charlys/Charl-Ine" title="Go to repository">
+<div class="md-source__icon md-icon">
+<svg viewbox="0 0 512 512" xmlns="http://www.w3.org/2000/svg"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M202.1 328.7c0 20.9-10.9 55.1-36.7 55.1s-36.7-34.2-36.7-55.1 10.9-55.1 36.7-55.1 36.7 34.2 36.7 55.1M496 278.2c0 31.9-3.2 65.7-17.5 95-37.9 76.6-142.1 74.8-216.7 74.8-75.8 0-186.2 2.7-225.6-74.8-14.6-29-20.2-63.1-20.2-95 0-41.9 13.9-81.5 41.5-113.6-5.2-15.8-7.7-32.4-7.7-48.8 0-21.5 4.9-32.3 14.6-51.8 45.3 0 74.3 9 108.8 36 29-6.9 58.8-10 88.7-10 27 0 54.2 2.9 80.4 9.2 34-26.7 63-35.2 107.8-35.2 9.8 19.5 14.6 30.3 14.6 51.8 0 16.4-2.6 32.7-7.7 48.2 27.5 32.4 39 72.3 39 114.2m-64.3 50.5c0-43.9-26.7-82.6-73.5-82.6-18.9 0-37 3.4-56 6-14.9 2.3-29.8 3.2-45.1 3.2-15.2 0-30.1-.9-45.1-3.2-18.7-2.6-37-6-56-6-46.8 0-73.5 38.7-73.5 82.6 0 87.8 80.4 101.3 150.4 101.3h48.2c70.3 0 150.6-13.4 150.6-101.3m-82.6-55.1c-25.8 0-36.7 34.2-36.7 55.1s10.9 55.1 36.7 55.1 36.7-34.2 36.7-55.1-10.9-55.1-36.7-55.1"></path></svg>
+</div>
+<div class="md-source__repository">
+    Charl_Ine
+  </div>
+</a>
+</div>
+</nav>
+</header>
+<div class="md-container" data-md-component="container">
+<nav aria-label="Tabs" class="md-tabs" data-md-component="tabs">
+<div class="md-grid">
+<ul class="md-tabs__list">
+<li class="md-tabs__item">
+<a class="md-tabs__link" href="../..">
+        
+  
+  
+    
+  
+  Accueil
+
+      </a>
+</li>
+<li class="md-tabs__item">
+<a class="md-tabs__link" href="../../graph/">
+        
+  
+  
+    
+  
+  Graph
+
+      </a>
+</li>
+<li class="md-tabs__item">
+<a class="md-tabs__link" href="../nettete-en-jeu/">
+          
+  
+  
+  Tech
+
+        </a>
+</li>
+</ul>
+</div>
+</nav>
+<main class="md-main" data-md-component="main">
+<div class="md-main__inner md-grid">
+<div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation">
+<div class="md-sidebar__scrollwrap">
+<div class="md-sidebar__inner">
+<nav aria-label="Navigation" class="md-nav md-nav--primary md-nav--lifted md-nav--integrated" data-md-level="0">
+<label class="md-nav__title" for="__drawer">
+<a aria-label="Charl_Ine" class="md-nav__button md-logo" data-md-component="logo" href="../.." title="Charl_Ine">
+<svg viewbox="0 0 512 512" xmlns="http://www.w3.org/2000/svg"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M116.7 33.8c4.5-6.1 11.7-9.8 19.3-9.8h240c7.6 0 14.8 3.6 19.3 9.8l112 152c6.8 9.2 6.1 21.9-1.5 30.4l-232 256c-4.5 5-11 7.9-17.8 7.9s-13.2-2.9-17.8-7.9l-232-256c-7.7-8.5-8.3-21.2-1.5-30.4zm38.5 39.8c-3.3 2.5-4.2 7-2.1 10.5l57.4 95.7L63.3 192c-4.1.3-7.3 3.8-7.3 8s3.2 7.6 7.3 8l192 16h1.3l192-16c4.1-.3 7.3-3.8 7.3-8s-3.2-7.6-7.3-8l-147.2-12.3 57.4-95.6c2.1-3.5 1.2-8.1-2.1-10.5s-7.9-2-10.7 1l-90 97.6-90.1-97.6c-2.8-3-7.4-3.4-10.7-1"></path></svg>
+</a>
+    Charl_Ine
+  </label>
+<div class="md-nav__source">
+<a class="md-source" data-md-component="source" href="https://github.com/i-charlys/Charl-Ine" title="Go to repository">
+<div class="md-source__icon md-icon">
+<svg viewbox="0 0 512 512" xmlns="http://www.w3.org/2000/svg"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M202.1 328.7c0 20.9-10.9 55.1-36.7 55.1s-36.7-34.2-36.7-55.1 10.9-55.1 36.7-55.1 36.7 34.2 36.7 55.1M496 278.2c0 31.9-3.2 65.7-17.5 95-37.9 76.6-142.1 74.8-216.7 74.8-75.8 0-186.2 2.7-225.6-74.8-14.6-29-20.2-63.1-20.2-95 0-41.9 13.9-81.5 41.5-113.6-5.2-15.8-7.7-32.4-7.7-48.8 0-21.5 4.9-32.3 14.6-51.8 45.3 0 74.3 9 108.8 36 29-6.9 58.8-10 88.7-10 27 0 54.2 2.9 80.4 9.2 34-26.7 63-35.2 107.8-35.2 9.8 19.5 14.6 30.3 14.6 51.8 0 16.4-2.6 32.7-7.7 48.2 27.5 32.4 39 72.3 39 114.2m-64.3 50.5c0-43.9-26.7-82.6-73.5-82.6-18.9 0-37 3.4-56 6-14.9 2.3-29.8 3.2-45.1 3.2-15.2 0-30.1-.9-45.1-3.2-18.7-2.6-37-6-56-6-46.8 0-73.5 38.7-73.5 82.6 0 87.8 80.4 101.3 150.4 101.3h48.2c70.3 0 150.6-13.4 150.6-101.3m-82.6-55.1c-25.8 0-36.7 34.2-36.7 55.1s10.9 55.1 36.7 55.1 36.7-34.2 36.7-55.1-10.9-55.1-36.7-55.1"></path></svg>
+</div>
+<div class="md-source__repository">
+    Charl_Ine
+  </div>
+</a>
+</div>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../..">
+<span class="md-ellipsis">
+    
+  
+    Accueil
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../graph/">
+<span class="md-ellipsis">
+    
+  
+    Graph
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle md-toggle--indeterminate" id="__nav_3" type="checkbox"/>
+<label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+<span class="md-ellipsis">
+    
+  
+    Tech
+  
+
+    
+  </span>
+<span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-expanded="false" aria-labelledby="__nav_3_label" class="md-nav" data-md-level="1">
+<label class="md-nav__title" for="__nav_3">
+<span class="md-nav__icon md-icon"></span>
+            
+  
+    Tech
+  
+
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../nettete-en-jeu/">
+<span class="md-ellipsis">
+    
+  
+    La Science Cachée de la Netteté en Jeu
+  
+
+    
+  </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+</ul>
+</nav>
+</div>
+</div>
+</div>
+<div class="md-content" data-md-component="content">
+<article class="md-content__inner md-typeset">
+<h1>L'intérêt d'un DNS chiffre</h1>
+<h3 id="introduction-rejoindre-le-club-des-015">Introduction : Rejoindre le club des 0,15 %<a class="headerlink" href="#introduction-rejoindre-le-club-des-015" title="Permanent link">⧫</a></h3>
+<p>En s’appuyant sur les mesures de l’APNIC Labs, on estime qu’il existe aujourd’hui <strong>5,4 milliards d’utilisateurs</strong> sur Internet. En raison du puissant <em>biais de statu quo</em>, environ <strong>75 %</strong> d’entre eux s’appuient aveuglément sur le DNS configuré par défaut dans la box de leur Fournisseur d’Accès Internet.</p>
+<p>Si vous avez déjà modifié vos paramètres réseau pour échapper à ce troupeau de Panurge, vous faites partie des <strong>23 % d’initiés</strong> qui utilisent un résolveur public. Vous naviguez probablement via le fameux <code>8.8.8.8</code> de Google ou le <code>1.1.1.1</code> de Cloudflare qui, à eux deux, captent déjà <strong>16,5 %</strong> du trafic mondial.</p>
+<p>Cependant, changer de berger ne signifie pas être libre. Quitte à quitter le troupeau, autant ne plus suivre personne et passer au <strong>DNS Privé</strong>. Ce cercle très restreint, où la confidentialité et le contrôle sont rois, se divise en trois grandes catégories :</p>
+<ul>
+<li><strong>Les DNS Payants SaaS :</strong> Ce sont des services spécialisés comme NextDNS Premium ou ControlD. Ils offrent une infrastructure clé en main, des fonctionnalités de filtrage avancées et une politique de confidentialité stricte sans logs, moyennant un abonnement.</li>
+<li><strong>Les DNS Freemium :</strong> Souvent la vitrine technologique d’entreprises de cybersécurité telle que Cisco Umbrella. C’est une version publique et gratuite de leurs solutions d’entreprise offrant une protection de base contre les menaces.</li>
+<li><strong>Les DNS “Self-Hosted” ou Auto-hébergés :</strong> Le contrôle absolu. C’est l’approche “Do It Yourself” avec des outils comme AdGuard Home ou Pi-hole qui permet de devenir son propre fournisseur de DNS, sans aucun tiers de confiance.</li>
+</ul>
+<hr/>
+<h3 id="avant-propos-petit-lexique-de-survie-reseau">Avant-propos : Petit lexique de survie réseau<a class="headerlink" href="#avant-propos-petit-lexique-de-survie-reseau" title="Permanent link">⧫</a></h3>
+<p>Pour comprendre l’architecture dont nous allons parler, il est indispensable de décrypter la mécanique invisible d’Internet. Oubliez les explications simplistes, voici ce qui se passe vraiment sous le capot.</p>
+<p>[Image of DNS resolution process diagram]</p>
+<h4 id="1-lannuaire-dns">1. L’annuaire : DNS<a class="headerlink" href="#1-lannuaire-dns" title="Permanent link">⧫</a></h4>
+<p>C’est la clé de voûte du web. Les serveurs parlent en adresses IP comme <code>142.250.179.78</code>, mais les humains mémorisent des noms comme <code>github.com</code>. Le système DNS est l’annuaire mondial qui effectue cette traduction en temps réel. Sans lui, vous ne surfez pas.</p>
+<h4 id="2-le-duo-souvent-confondu-upstream-vs-recursif">2. Le duo souvent confondu : Upstream vs Récursif<a class="headerlink" href="#2-le-duo-souvent-confondu-upstream-vs-recursif" title="Permanent link">⧫</a></h4>
+<p>Dans les tutoriels grand public, ces termes sont mélangés. Pour votre installation, la distinction est pourtant critique :</p>
+<ul>
+<li><strong>L’Upstream DNS ou Le Relais :</strong> C’est un terme relatif. C’est simplement le serveur “au-dessus” à qui votre machine transmet une question qu’elle ne sait pas résoudre. Il agit souvent comme une simple passerelle.</li>
+<li><strong>Le DNS Récursif ou L’Enquêteur :</strong> C’est le serveur qui fait le véritable travail. Si on lui demande une adresse qu’il ne connaît pas, il va parcourir l’arborescence mondiale pour trouver l’IP finale.</li>
+</ul>
+<h4 id="3-la-source-de-verite-dns-autoritaire">3. La source de vérité : DNS Autoritaire<a class="headerlink" href="#3-la-source-de-verite-dns-autoritaire" title="Permanent link">⧫</a></h4>
+<p>C’est le bout de la chaîne, le “Boss” final d’une requête. C’est le serveur qui détient officiellement l’enregistrement DNS d’un domaine spécifique. Il ne cherche pas la réponse ailleurs, il <strong>est</strong> la réponse. Si vous achetez un nom de domaine chez OVH, les serveurs DNS d’OVH sont “autoritaires” pour votre domaine. Ils disent au reste du monde où vous trouver.</p>
+<h4 id="4-la-cible-mouvante-dyndns">4. La cible mouvante : DynDNS<a class="headerlink" href="#4-la-cible-mouvante-dyndns" title="Permanent link">⧫</a></h4>
+<p>Indispensable pour l’auto-hébergement résidentiel. La plupart des FAI changent régulièrement votre IP publique. Le DynDNS est un petit script qui surveille ce changement et met à jour automatiquement votre nom de domaine pour qu’il pointe toujours vers votre IP actuelle, vous garantissant un accès permanent à vos services.</p>
+<h4 id="5-lart-du-double-visage-split-dns">5. L’art du double visage : Split-DNS<a class="headerlink" href="#5-lart-du-double-visage-split-dns" title="Permanent link">⧫</a></h4>
+<p>C’est une technique où votre serveur DNS ment intelligemment en fonction de la provenance de la requête :</p>
+<ul>
+<li><strong>Depuis l’extérieur :</strong> <code>jellyfin.mondomaine.fr</code> renvoie vers votre <strong>IP Publique</strong> pour passer par votre pare-feu sécurisé.</li>
+<li><strong>Depuis chez vous :</strong> Le même nom renvoie vers l’<strong>IP Locale</strong> de votre serveur. L’intérêt est qu’à la maison, le flux reste en local. C’est plus rapide, plus stable et cela ne sature pas votre connexion internet inutilement.</li>
+</ul>
+<hr/>
+<h3 id="le-chiffrement-proteger-ses-requetes">Le Chiffrement : Protéger ses requêtes<a class="headerlink" href="#le-chiffrement-proteger-ses-requetes" title="Permanent link">⧫</a></h3>
+<p>Un <strong>DNS chiffré</strong> est une méthode qui enferme vos demandes DNS dans une enveloppe sécurisée. Contrairement au DNS standard lisible par n’importe qui sur le réseau, le DNS chiffré empêche votre fournisseur d’accès ou un hacker de voir quels sites vous visitez.</p>
+<p>Voici les protocoles utilisés dans mon schéma :</p>
+<ul>
+<li><strong>DNSCrypt :</strong> L’ancêtre robuste. C’est un protocole open-source qui authentifie et chiffre le trafic DNS. Il est très sûr mais il utilise un langage unique qui le rend facile à repérer et donc à bloquer par les pare-feux d’entreprises.</li>
+<li><strong>DoT ou DNS over TLS :</strong> Le standard rigoureux. Il utilise un tunnel sécurisé classique TLS sur le port dédié 853. C’est le standard natif d’Android appelé “DNS Privé”. C’est propre et rapide, mais comme il utilise un port spécifique, un administrateur réseau peut facilement le bloquer.</li>
+<li><strong>DoH ou DNS over HTTPS :</strong> Le “caméléon”. Il cache vos requêtes DNS à l’intérieur du trafic Web classique sur le port 443. Vu de l’extérieur, il est impossible de distinguer une requête DNS d’une visite sur un site web sécurisé. C’est l’arme absolue contre la censure.</li>
+<li><strong>DoQ ou DNS over QUIC :</strong> La “Formule 1” des protocoles définie par la RFC 9250. Le DoQ utilise le protocole de transport <strong>QUIC</strong> de manière brute et dédiée pour le DNS. Il est extrêmement rapide car il supprime les temps d’attente lors des pertes de paquets, le fameux <em>Head-of-Line Blocking</em>. C’est le protocole idéal pour les réseaux mobiles instables.</li>
+<li><strong>DoH3 ou DNS over HTTPS/3 :</strong> L’évolution moderne du DoH. Au lieu d’utiliser le vieux protocole TCP, il utilise <strong>HTTP/3</strong> basé sur QUIC. C’est techniquement du trafic Web, mais boosté pour la vitesse.</li>
+</ul>
+<hr/>
+<h3 id="du-chiffrement-mais-pas-seulement">Du chiffrement, mais pas seulement<a class="headerlink" href="#du-chiffrement-mais-pas-seulement" title="Permanent link">⧫</a></h3>
+<p>On pourrait penser que si l’on n’a rien à cacher, chiffrer ses requêtes DNS est superflu. C’est une erreur stratégique. Si les solutions de DNS privé se sont multipliées, loi du marché oblige, c’est parce qu’elles offrent bien plus que de la simple confidentialité. Elles redonnent le <strong>pouvoir de décision</strong> à l’utilisateur.</p>
+<p>Concrètement, reprendre la main sur son DNS permet d’activer des fonctionnalités que votre FAI ne vous offrira jamais :</p>
+<ul>
+<li>
+<p><strong>Le Sinkholing publicitaire :</strong> C’est la fonction la plus populaire. Le serveur DNS repère les domaines servant des publicités ou des traceurs et renvoie une réponse vide <code>0.0.0.0</code> avant même que la pub ne soit téléchargée.<br/>
+    !!! warning “Limitation”<br/>
+        Cela marche uniquement avec les pubs qui passent par un autre nom de domaine que celui que vous demandez. Cela signifie que pour YouTube, puisque les pubs passent par le domaine <code>youtube.com</code>, cette technique est inefficace.</p>
+</li>
+<li>
+<p><strong>La Sécurité active :</strong> Bloquer l’accès aux domaines connus pour héberger des malwares, du phishing ou des botnets avant même que votre machine ne tente de s’y connecter.</p>
+</li>
+<li><strong>Le contournement de la censure :</strong> De nombreux blocages étatiques ou imposés par les FAI se font par simple mensonge DNS. Quand vous demandez un site bloqué, votre FAI vous renvoie sciemment une fausse adresse. Un DNS privé vous répond avec l’adresse IP réelle et rétablit l’accès instantanément.</li>
+<li><strong>L’évasion géographique et légale :</strong> C’est le niveau au-dessus proposé par des services avancés comme NextDNS. Ici, il ne s’agit plus seulement de résoudre le nom, mais de <strong>duper le service distant</strong>. Pour la vérification d’âge sur les sites adultes type loi ARCOM, ces DNS utilisent une technique de routing intelligent pour renvoyer une IP située hors de France. Le site pense alors que vous vous connectez depuis l’étranger et ne vous impose aucune vérification d’identité.</li>
+<li><strong>Le contrôle parental et Safe Search :</strong> À l’inverse, vous pouvez choisir d’imposer vos propres règles pour protéger les enfants sur tout le réseau, sans avoir à configurer chaque appareil individuellement.</li>
+</ul>
+<hr/>
+<h3 id="linteret-dun-dns-sinkhole-local">L’intérêt d’un DNS Sinkhole Local<a class="headerlink" href="#linteret-dun-dns-sinkhole-local" title="Permanent link">⧫</a></h3>
+<p>Dans cette partie, nous nous concentrerons uniquement sur la mise en place d’un <strong>DNS Sinkhole</strong>, en laissant de côté la partie <strong>Unbound</strong> qui est la résolution récursive. Pour la majorité des utilisateurs, déléguer la résolution complexe à des géants de la sécurité comme Quad9 ou Cloudflare via un protocole chiffré est souvent plus performant et stable que de gérer son propre résolveur à la maison.</p>
+<p>Depuis quelques années, des solutions open-source phares comme <strong>AdGuard Home</strong> ou <strong>Pi-hole</strong> se sont imposées. Ce sont des utilitaires légers, conçus pour être installés sur un petit serveur type Raspberry Pi selon le principe du <em>Set and Forget</em>.</p>
+<p>Leur rôle est de devenir la tour de contrôle DNS de votre réseau local. Une fois l’adresse IP de votre serveur renseignée dans les paramètres DHCP de votre Box Internet, la magie opère :</p>
+<ol>
+<li><strong>Le Filtrage Universel :</strong> C’est leur atout maître. Contrairement à une extension de navigateur qui ne protège que votre ordinateur, le Sinkhole protège <strong>tout ce qui est connecté au Wi-Fi</strong>.</li>
+<li><strong>La gestion des objets connectés :</strong> C’est la seule manière efficace de bloquer la télémétrie et les pubs sur des appareils où l’on ne peut rien installer. Cela inclut votre caméra de surveillance chinoise douteuse, l’OS bourré de pubs de votre Smart TV, et même vos toilettes connectées.</li>
+<li><strong>Confidentialité accrue :</strong> En configurant votre Sinkhole pour utiliser des protocoles chiffrés vers l’extérieur, vous empêchez votre FAI d’espionner votre historique de navigation DNS.</li>
+</ol>
+<h4 id="le-choix-des-armes-configurer-lupstream-dans-adguard-home">Le Choix des Armes : Configurer l’Upstream dans AdGuard Home<a class="headerlink" href="#le-choix-des-armes-configurer-lupstream-dans-adguard-home" title="Permanent link">⧫</a></h4>
+<p>C’est ici que tout se joue. Dans l’interface d’AdGuard Home, vous devez définir vers qui votre serveur va se tourner s’il ne connaît pas la réponse. Vous avez deux écoles :</p>
+<ul>
+<li><strong>L’école de la gratuité performante :</strong> Vous renseignez les serveurs chiffrés de <strong>Cloudflare</strong> <code>tls://1.1.1.1</code> ou de <strong>Quad9</strong> <code>tls://9.9.9.9</code>. C’est rapide, gratuit, et cela chiffre vos requêtes.</li>
+<li><strong>L’école de la maîtrise totale (Recommandé) :</strong> Vous utilisez ici votre propre compte <strong>NextDNS</strong> ou <strong>ControlD</strong>. En entrant l’adresse unique fournie par ces services <code>https://dns.nextdns.io/VotreID</code>, vous créez un double niveau de protection. Votre AdGuard Home filtre le “bruit” local, et NextDNS assure une sécurité de niveau entreprise en amont, tout en vous offrant des logs consultables depuis n’importe où. C’est la configuration ultime.</li>
+</ul>
+<hr/>
+<h3 id="emportez-votre-forteresse-partout">Emportez votre forteresse partout<a class="headerlink" href="#emportez-votre-forteresse-partout" title="Permanent link">⧫</a></h3>
+<p>Avoir un réseau sain à la maison, c’est bien. Mais une fois que vous basculez en 4G ou sur le Wi-Fi douteux d’un fast-food, vous perdez toute votre protection. Heureusement, il est possible d’exporter le confort et la sécurité de votre domicile vers votre smartphone, où que vous soyez.</p>
+<p>Pour cette partie, nous nous concentrerons uniquement sur <strong>AdGuard Home</strong>. Contrairement à Pi-hole qui nécessite souvent un VPN pour être sécurisé, AGH gère nativement les protocoles de chiffrement modernes, ce qui permet de l’exposer nu sur internet à condition de respecter des règles strictes.</p>
+<div class="admonition danger">
+<p class="admonition-title">DISCLAIMER CRITIQUE</p>
+<p>Quoi que vous fassiez, <strong>n’ouvrez JAMAIS, au grand JAMAIS, le port 53 UDP ou TCP</strong> de votre box internet vers l’extérieur. Si vous faites cela, vous devenez un “Open Resolver”. Les pirates utiliseront votre connexion pour lancer des attaques massives contre d’autres cibles et votre FAI coupera votre ligne en moins de 24h. C’est non négociable.</p>
+</div>
+<p><strong>Les Prérequis :</strong></p>
+<ol>
+<li>Un <strong>Nom de Domaine</strong>.</li>
+<li>Un accès à la configuration NAT/PAT de votre Box.</li>
+<li>Une IP Publique Fixe ou un DynDNS configuré.</li>
+</ol>
+<h4 id="niveau-1-la-methode-directe-dot-doq">Niveau 1 : La méthode “Directe” (DoT &amp; DoQ)<a class="headerlink" href="#niveau-1-la-methode-directe-dot-doq" title="Permanent link">⧫</a></h4>
+<p><em>C’est la méthode la plus simple à configurer. Elle offre une excellente sécurité, mais peut échouer derrière des pare-feux stricts.</em></p>
+<p>Dans cette configuration, nous allons utiliser les protocoles <strong>DNS-over-TLS</strong> et <strong>DNS-over-QUIC</strong>. Ils sont chiffrés, sécurisés, et AdGuard Home les gère tout seul.</p>
+<p><strong>La configuration :</strong></p>
+<ol>
+<li>Dans AdGuard Home section Chiffrement, générez vos certificats HTTPS via Let’s Encrypt.</li>
+<li>Sur votre Box Internet, ouvrez et redirigez uniquement les ports suivants vers l’IP locale de votre serveur AGH :<ul>
+<li><strong>Port 853 TCP</strong> pour le DoT.</li>
+<li><strong>Port 784 ou 8853 UDP</strong> pour le DoQ. AdGuard utilise souvent le 784 par défaut pour éviter les conflits.</li>
+</ul>
+</li>
+</ol>
+<div class="admonition note">
+<p class="admonition-title">Pourquoi ne pas ouvrir le 443 ici ?</p>
+<p>Dans cette méthode, on ne touche pas au port 443. Cela garantit que personne ne peut tomber sur votre interface d’administration Web par hasard. Vous n’exposez que le moteur DNS chiffré.</p>
+</div>
+<p><strong>Le bémol :</strong> Si vous êtes au bureau ou à l’université, l’administrateur réseau bloque souvent tous les ports exotiques. Il y a de fortes chances que le port 853 soit fermé, rendant votre DNS inaccessible.</p>
+<h4 id="niveau-2-la-methode-furtive-doh-reverse-proxy">Niveau 2 : La méthode “Furtive” (DoH + Reverse Proxy)<a class="headerlink" href="#niveau-2-la-methode-furtive-doh-reverse-proxy" title="Permanent link">⧫</a></h4>
+<p><em>C’est la méthode “Roi du silence”. Elle passe partout, même à travers les pare-feux les plus restrictifs.</em></p>
+<p>Ici, nous allons utiliser le <strong>DNS-over-HTTPS</strong>. Comme son nom l’indique, le trafic DNS se cache dans du trafic HTTPS classique sur le port 443, exactement comme si vous naviguiez sur le web. Aucun administrateur réseau ne bloque le port 443, sinon internet ne fonctionnerait plus.</p>
+<p><strong>Le Problème de sécurité :</strong> Si vous redirigez bêtement le port 443 de votre Box vers AdGuard Home, vous exposez deux choses : le service DNS ce que nous voulons, mais aussi <strong>l’interface d’administration</strong> ce que nous ne voulons surtout pas. N’importe qui tapant <code>https://dns.mondomaine.fr</code> tomberait sur votre page de connexion.</p>
+<p><strong>La Solution : Le Reverse Proxy.</strong> Nous allons placer un videur devant AdGuard Home, et l’outil idéal pour cela est <strong>Nginx Proxy Manager</strong> ou NPM.</p>
+<p><strong>La logique de configuration :</strong></p>
+<ol>
+<li>Sur votre Box : Redirigez le port <strong>443</strong> vers <strong>Nginx Proxy Manager</strong> et non vers AdGuard.</li>
+<li>Dans NPM, configurez un hôte pour <code>dns.mondomaine.fr</code>.</li>
+<li>Dans l’onglet “Custom Locations”, créez une règle stricte :<ul>
+<li>Si la demande est <code>/dns-query</code>, c’est à dire le standard DoH ➔ <strong>AUTORISER</strong> et envoyer vers AdGuard Home.</li>
+<li>Si la demande est <code>/</code>, c’est à dire la racine du panel admin ➔ <strong>BLOQUER</strong> en renvoyant une erreur 403 ou 404.</li>
+</ul>
+</li>
+</ol>
+<p>Ainsi, votre DNS est accessible partout via le port 443 standard, mais votre interface de gestion reste invisible depuis l’extérieur.</p>
+<hr/>
+<h3 id="le-petit-plus-future-proof-avec-http3">Le petit plus “Future-Proof” avec HTTP/3<a class="headerlink" href="#le-petit-plus-future-proof-avec-http3" title="Permanent link">⧫</a></h3>
+<p>Si vous voulez vraiment optimiser votre installation pour vos déplacements et les connexions instables, vous pouvez activer le support du <strong>HTTP/3</strong>.</p>
+<p>Contrairement au HTTPS classique qui utilise le protocole <strong>TCP</strong> fiable mais lourd, le HTTP/3 utilise le protocole <strong>QUIC</strong> basé sur <strong>UDP</strong>. L’avantage est une latence quasi nulle lors de l’établissement de la connexion et une résilience incroyable. Si vous passez d’une antenne 4G à une autre, le HTTP/3 ne coupe pas là où le TCP devrait tout recommencer.</p>
+<p><strong>La configuration magique :</strong></p>
+<ol>
+<li><strong>Dans AdGuard Home :</strong> Allez dans les paramètres de chiffrement et activez l’option <strong>“Enable HTTP/3”</strong>. Si vous n’avez pas l’option, il faudra éditer manuellement le fichier de configuration.</li>
+<li><strong>Sur votre Box Internet :</strong> Ouvrez le port <strong>443</strong> en protocole <strong>UDP uniquement</strong> et redirigez-le directement vers l’IP de votre AdGuard Home.</li>
+</ol>
+<div class="admonition question">
+<p class="admonition-title">Une objection courante : “Mais le port 443 est déjà pris par mon Reverse Proxy !”</p>
+<p>Pas de panique. Les protocoles <strong>TCP</strong> et <strong>UDP</strong> sont comme deux routes parallèles qui portent le même nom mais ne se croisent jamais.</p>
+<ul>
+<li>Votre Reverse Proxy NPM écoute sur le <strong>443 TCP</strong>.</li>
+<li>Votre AdGuard Home HTTP/3 écoutera sur le <strong>443 UDP</strong>.</li>
+</ul>
+<p>Les deux peuvent cohabiter parfaitement sur la même IP publique. Vous obtenez ainsi le meilleur des deux mondes : la compatibilité universelle via NPM en TCP et la vitesse pure via QUIC en UDP pour les appareils compatibles.</p>
+</div>
+<hr/>
+<h3 id="pour-ceux-qui-ont-envie-de-souffrir-mon-architecture-overkill">Pour ceux qui ont envie de souffrir : Mon Architecture “Overkill”<a class="headerlink" href="#pour-ceux-qui-ont-envie-de-souffrir-mon-architecture-overkill" title="Permanent link">⧫</a></h3>
+<p>Si vous avez trouvé les chapitres précédents complexes, fuyez maintenant. Ce qui suit n’est plus de l’ordre du tutoriel grand public, mais relève de l’ingénierie réseau obsessionnelle ou de la folie douce.</p>
+<p>L’objectif ici n’était pas juste de bloquer les pubs, mais de créer une <strong>infrastructure hybride Cloud-to-Home multi-sites</strong>, résiliente, capable d’absorber n’importe quel protocole moderne et d’unifier différents lieux de vie dans un seul maillage sécurisé.</p>
+<p>Accrochez-vous, voici comment fonctionne mon usine à gaz.</p>
+<p><img alt="schema_infra.png" src="../schema_infra.png"/></p>
+<h4 id="1-la-citadelle-dans-le-cloud-le-vps-frontal">1. La Citadelle dans le Cloud : le VPS Frontal<a class="headerlink" href="#1-la-citadelle-dans-le-cloud-le-vps-frontal" title="Permanent link">⧫</a></h4>
+<p>Tout commence par un <strong>VPS</strong> exposé sur internet. C’est mon entonnoir à protocoles. Il est agnostique et accepte tout ce que mes appareils nomades peuvent lui lancer :</p>
+<ul>
+<li><strong>Port 443 :</strong> Il gère le <strong>VPN over TLS</strong> pour passer les pare-feux d’entreprise, le <strong>DoH</strong> classique et le <strong>DoH3</strong>.</li>
+<li><strong>Ports 784 &amp; 853 :</strong> Il écoute le <strong>DoQ</strong> pour la vitesse pure et le <strong>DoT</strong> pour la compatibilité héritée.</li>
+</ul>
+<p>Derrière ces ports, un <strong>HAProxy</strong> joue le rôle d’aiguilleur du ciel. Il analyse le trafic entrant et sépare les torchons des serviettes : il redistribue les paquets WEB, VPN et DNS vers leurs destinations respectives, soit OpenVPN pour le tunnel, soit l’instance locale d’AdGuard Home sur le serveur.</p>
+<p>Cette instance AdGuard Home sur le VPS n’est pas qu’un simple filtre. Elle agit comme un <strong>Load Balancer intelligent</strong> qui répartit la charge de travail DNS entre mes deux autres réseaux physiques.</p>
+<h4 id="2-la-colonne-vertebrale-le-tunnel-wireguard">2. La Colonne Vertébrale : le Tunnel WireGuard<a class="headerlink" href="#2-la-colonne-vertebrale-le-tunnel-wireguard" title="Permanent link">⧫</a></h4>
+<p>Pour réaliser cet exploit, le VPS est relié à mes sites physiques via un tunnel <strong>WireGuard</strong>. C’est ici que la magie opère. Mon VPS dans le cloud parle directement aux serveurs situés physiquement chez moi, le Site A, ou dans un réseau secondaire, le Site B, à travers ce tunnel chiffré. Ce trafic interne transite souvent en <strong>DoQ</strong> à l’intérieur même du tunnel pour garantir une latence minimale.</p>
+<h4 id="3-les-bases-terrestres-site-a-site-b">3. Les Bases Terrestres : Site A &amp; Site B<a class="headerlink" href="#3-les-bases-terrestres-site-a-site-b" title="Permanent link">⧫</a></h4>
+<p>Au sol, j’ai deux installations miroirs. Chaque site héberge un <strong>Raspberry Pi</strong> qui agit comme le gardien du temple local avec trois briques essentielles :</p>
+<ul>
+<li><strong>Nginx Proxy Manager :</strong> Il reçoit le trafic HTTPS via le tunnel ou le web et le redistribue vers mes services locaux.</li>
+<li><strong>AdGuard Home :</strong> Il assure le rôle de DNS Sinkhole pour tout le réseau local.</li>
+<li><strong>AdGuard-Sync :</strong> Un outil vital pour synchroniser automatiquement les règles de filtrage entre les différentes instances.</li>
+</ul>
+<p><strong>C’est là que ça devient beau :</strong> Cette configuration offre une redondance totale.</p>
+<ol>
+<li><strong>En interne :</strong> Si le Raspberry Pi du Site A rend l’âme, la Box Internet du Site A via ses réglages DHCP sait qu’elle peut interroger le Raspberry du Site B à travers le tunnel WireGuard.</li>
+<li><strong>Depuis l’extérieur :</strong> Si votre chat renverse un verre d’eau sur le Raspberry du Site B, le VPS va constater une augmentation de la latence et va automatiquement rediriger tout le trafic DNS vers le Site A en attendant votre retour.</li>
+</ol>
+<p>Enfin, puisque mes trois instances AGH ne sont que des intermédiaires, elles ont besoin d’un Chef pour la résolution réelle. J’ai choisi <strong>NextDNS</strong> comme Upstream par défaut en DoH3, pour ses performances en Europe et sa finesse de configuration.</p>
+<h4 id="4-les-failles-de-larmure-limites-et-perspectives">4. Les Failles de l’Armure : limites et perspectives<a class="headerlink" href="#4-les-failles-de-larmure-limites-et-perspectives" title="Permanent link">⧫</a></h4>
+<p>Aucun système n’est parfait, et celui-ci a encore deux talons d’Achille que je travaille à résoudre :</p>
+<ol>
+<li><strong>Le scénario OVH Strasbourg :</strong> Si mon VPS brûle physiquement, je perds mon point d’entrée unique. La solution future résidera probablement au niveau de mon DNS Autoritaire, avec un basculement automatique vers une IP de secours.</li>
+<li><strong>Le scénario Blackout Local :</strong> Les box internet limitent souvent le DHCP à deux serveurs DNS. Si mon Raspberry local plante <strong>ET</strong> que le tunnel WireGuard vers l’autre site tombe simultanément, mes appareils locaux se retrouvent aveugles. C’est le risque de la centralisation extrême.</li>
+</ol>
+<p><strong>Résultat :</strong> Je dispose d’un réseau mondial personnel, chiffré de bout en bout, compatible avec les protocoles du futur et capable de survivre à une panne matérielle sans que je ne voie jamais une seule publicité. C’est totalement inutile pour le commun des mortels, et donc absolument indispensable.</p>
+<aside class="md-source-file">
+<span class="md-source-file__fact">
+<span class="md-icon" title="Last update">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"></path></svg>
+</span>
+<span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="November 23, 2025 02:04:49 UTC">November 23, 2025</span>
+</span>
+</aside>
+</article>
+</div>
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+</div>
+<button class="md-top md-icon" data-md-component="top" hidden="" type="button">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"></path></svg>
+  Back to top
+</button>
+</main>
+<footer class="md-footer">
+<div class="md-footer-meta md-typeset">
+<div class="md-footer-meta__inner md-grid">
+<div class="md-copyright">
+<div class="md-copyright__highlight">
+      Second cerveau de <a href="https://github.com/i-Charlys" target="_blank">Charl-Ine</a> et de <a href="https://github.com/kumo-h" target="_blank">Charl-Ine</a> © 2024 sous licence <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.fr" target="_blank">CC BY-NC-SA 4.0</a>
+</div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" rel="noopener" target="_blank">
+      Material for MkDocs
+    </a>
+</div>
+<div class="md-social">
+<a class="md-social__link" href="https://github.com/i-Charlys/" rel="noopener" target="_blank" title="Compte GitHub i-charlys">
+<svg viewbox="0 0 512 512" xmlns="http://www.w3.org/2000/svg"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"></path></svg>
+</a>
+<a class="md-social__link" href="https://github.com/kumo-h/" rel="noopener" target="_blank" title="Compte GitHub kumo-h">
+<svg viewbox="0 0 512 512" xmlns="http://www.w3.org/2000/svg"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M216.3 158.4H137C97 147.9 6.5 150.6 6.5 233.2c0 30.1 15 51.2 35 61-25.1 23-37 33.8-37 49.2 0 11 4.5 21.1 17.9 26.8C8.1 383.6 0 393.3 0 411.6c0 32.1 28 50.8 101.6 50.8 70.8 0 111.8-26.4 111.8-73.2 0-58.7-45.2-56.5-151.6-63l13.4-21.6c27.3 7.6 118.7 10 118.7-67.9 0-18.7-7.7-31.7-15-41.1l37.4-2.8v-34.5zm-63.4 241.9c0 32.1-104.9 32.1-104.9 2.4 0-8.1 5.3-15 10.6-21.5 77.7 5.3 94.3 3.4 94.3 19.1m-50.8-134.6c-52.8 0-50.5-71.2 1.2-71.2 49.5 0 50.8 71.2-1.2 71.2m133.3 100.5v-32.1c26.7-3.7 27.2-2 27.2-11V203.6c0-8.5-2.1-7.4-27.2-16.3l4.5-32.9h84.2v168.7c0 6.5.4 7.3 6.5 8.1l20.7 2.8v32.1H235.4zm52.5-244.3c-23.2 0-36.6-13.4-36.6-36.6s13.4-35.8 36.6-35.8c23.6 0 37 12.6 37 35.8s-13.4 36.6-37 36.6M512 350.5c-17.5 8.5-43.1 16.3-66.3 16.3-48.4 0-66.7-19.5-66.7-65.5V194.8c0-5.4 1-4.1-31.7-4.1v-36.2c35.8-4.1 50-22 54.5-66.3h38.6c0 65.8-1.3 61.8 3.3 61.8H501v40.6h-60.6v97.1c0 6.9-4.9 51.4 60.6 26.8l11 35.8z"></path></svg>
+</a>
+</div>
+</div>
+</div>
+</footer>
+</div>
+<div class="md-dialog" data-md-component="dialog">
+<div class="md-dialog__inner md-typeset"></div>
+</div>
+<script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.instant", "navigation.tabs", "navigation.top", "toc.integrate", "header.autohide", "navigation.expand", "search.suggest", "search.highlight", "search.share"], "search": "../../assets/javascripts/workers/search.7a47a382.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+<script src="../../assets/javascripts/bundle.e71a0d61.min.js"></script>
+<script src="../../javascripts/mathjax.js"></script>
+<script src="../../javascripts/animations.js"></script>
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+<script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+</body>
+</html>
